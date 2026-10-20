@@ -1,5 +1,5 @@
-export type Category={id:string;name:string;slug:string;parent_id:string|null;sort_order:number;active:boolean};
-export type Product={id:string;name:string;slug:string;description:string;price:number;compare_at_price:number|null;category_id:string|null;image_url:string|null;gallery:string[];weight_grams:number;stock:number;featured:boolean;active:boolean;sku:string|null;created_at?:string};
+export type Category={id:string;name:string;slug:string;parent_id:string|null;sort_order:number;active:boolean;arabic_name?:string;image_url?:string|null;description?:string};
+export type Product={id:string;name:string;slug:string;description:string;price:number;compare_at_price:number|null;category_id:string|null;image_url:string|null;gallery:string[];weight_grams:number;stock:number;featured:boolean;active:boolean;sku:string|null;created_at?:string;badge?:string;package_size?:string;origin?:string;benefits?:string[]};
 export type CartLine={product:Product;quantity:number};
 export type Banner={id:string;title:string;subtitle:string;image_url:string|null;button_text:string;button_url:string;active:boolean;sort_order:number};
 export type ShippingZone={id:string;name:string;provinces:string[];active:boolean};
