@@ -3,14 +3,23 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { 
-  ShoppingBag, Search, Menu, X, Instagram, Heart, ArrowRight, Plus, 
+  ShoppingBag, Search, Menu, X, Instagram, Facebook, Heart, ArrowRight, Plus, 
   Minus, Trash2, MessageCircle, CheckCircle2, ShieldCheck, Truck, 
-  Clock, Sparkles, ChevronDown, Award, Star
+  Clock, Sparkles, ChevronDown, Award, Star, MapPin, ExternalLink
 } from 'lucide-react';
 import type { Product, Category, CartLine, Banner } from '@/lib/types';
 import { money } from '@/lib/demo';
 
-const WHATSAPP_NUMBER = '923451579846';
+export const WHATSAPP_NUMBER = '923451579846';
+export const WHATSAPP_CATALOG_URL = 'https://wa.me/c/225718499836004';
+export const STORE_ADDRESS = 'Shop # G-5 Ground Floor, Shalimar Square Mall, Shalimar Link Road, Singhpura, Lahore, 54000, Pakistan';
+export const STORE_HOURS = 'Open 24 Hours (7 Days a Week)';
+
+export const TikTokIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.3 6.3 0 0 0 1.87-4.49V8.65a8.28 8.28 0 0 0 4.84 1.54V6.75a4.83 4.83 0 0 1-.94-.06z" />
+  </svg>
+);
 
 type Store = {
   cart: CartLine[];
@@ -19,6 +28,8 @@ type Store = {
   clear: () => void;
   count: number;
   total: number;
+  waModalOpen: boolean;
+  setWaModalOpen: (open: boolean) => void;
 };
 
 const StoreContext = createContext<Store | null>(null);
@@ -31,6 +42,7 @@ export const useStore = () => {
 
 export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartLine[]>([]);
+  const [waModalOpen, setWaModalOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -63,8 +75,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const total = cart.reduce((a, x) => a + (x.product.price * x.quantity), 0);
 
   return (
-    <StoreContext.Provider value={{ cart, add, quantity, clear: () => setCart([]), count, total }}>
+    <StoreContext.Provider value={{ cart, add, quantity, clear: () => setCart([]), count, total, waModalOpen, setWaModalOpen }}>
       {children}
+      <FloatingSocialBar />
+      {waModalOpen && <WhatsAppPopupModal onClose={() => setWaModalOpen(false)} />}
     </StoreContext.Provider>
   );
 }
@@ -72,6 +86,122 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 // Generate pre-filled WhatsApp link
 export function getWhatsAppUrl(text: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+// WhatsApp Popup Modal
+export function WhatsAppPopupModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="wa-modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="wa-modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="wa-modal-close" onClick={onClose} aria-label="Close modal">
+          <X size={20} />
+        </button>
+
+        <div className="wa-modal-header">
+          <img src="/logo.png" alt="Hadi Islamic" className="wa-modal-logo" />
+          <div className="wa-modal-head-text">
+            <h3>Hadi Islamic Store</h3>
+            <span className="wa-status-badge">
+              <span className="online-dot" /> Open 24 Hours • Quick Replies
+            </span>
+          </div>
+        </div>
+
+        <div className="wa-modal-body">
+          <p className="wa-modal-intro">
+            Welcome to <strong>Hadi Islamic</strong>! Browse our full WhatsApp Business Catalogue with images and direct ordering, or chat with our Lahore team right now.
+          </p>
+
+          <div className="wa-address-card">
+            <div className="wa-addr-title">
+              <MapPin size={16} /> <strong>Store Location:</strong>
+            </div>
+            <p className="wa-addr-text">
+              Shop # G-5 Ground Floor, Shalimar Square Mall, Shalimar Link Road, Singhpura, Lahore, 54000, Pakistan
+            </p>
+            <div className="wa-timing-pill">
+              <Clock size={14} /> Open 24 Hours (7 Days a Week)
+            </div>
+          </div>
+
+          <div className="wa-actions-group">
+            <a 
+              href={WHATSAPP_CATALOG_URL} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="btn btn-wa-catalogue"
+            >
+              <ShoppingBag size={18} /> View WhatsApp Catalogue <ExternalLink size={14} />
+            </a>
+
+            <a 
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Assalamualaikum! I am inquiring about products at Hadi Islamic Store Lahore.')}`} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="btn btn-wa-chat"
+            >
+              <MessageCircle size={18} /> Direct Chat / Order (+92 345 1579846)
+            </a>
+          </div>
+        </div>
+
+        <div className="wa-modal-footer">
+          <span>Nationwide Cash on Delivery • 100% Genuine Sunnah Imports</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Floating Social Media Bar on the Right Side
+export function FloatingSocialBar() {
+  const { setWaModalOpen } = useStore();
+
+  return (
+    <aside className="floating-social-bar" aria-label="Quick social connections">
+      <button 
+        className="social-dock-btn wa-dock" 
+        onClick={() => setWaModalOpen(true)}
+        aria-label="WhatsApp Catalogue & Number"
+      >
+        <MessageCircle size={22} />
+        <span className="dock-tooltip">WhatsApp & Catalogue</span>
+      </button>
+
+      <a 
+        href="https://www.facebook.com/hadiislamic" 
+        target="_blank" 
+        rel="noreferrer" 
+        className="social-dock-btn fb-dock"
+        aria-label="Facebook Page"
+      >
+        <Facebook size={20} />
+        <span className="dock-tooltip">Facebook</span>
+      </a>
+
+      <a 
+        href="https://www.instagram.com/atifgulzar_wattoo?exln=MXMwYzNvZXZnbTJ6Zg==" 
+        target="_blank" 
+        rel="noreferrer" 
+        className="social-dock-btn insta-dock"
+        aria-label="Instagram Profile"
+      >
+        <Instagram size={20} />
+        <span className="dock-tooltip">Instagram</span>
+      </a>
+
+      <a 
+        href="https://www.tiktok.com/@hadi_islamic?_r=1&_t=ZS-9AbJ6raDmo0" 
+        target="_blank" 
+        rel="noreferrer" 
+        className="social-dock-btn tt-dock"
+        aria-label="TikTok Channel"
+      >
+        <TikTokIcon size={20} />
+        <span className="dock-tooltip">TikTok</span>
+      </a>
+    </aside>
+  );
 }
 
 export function Header({ categories }: { categories: Category[] }) {
@@ -268,6 +398,8 @@ export function Header({ categories }: { categories: Category[] }) {
 }
 
 export function Footer() {
+  const { setWaModalOpen } = useStore();
+
   return (
     <>
       <footer className="footer">
@@ -289,12 +421,18 @@ export function Footer() {
               <span>✓ Secure & Clean Food Packaging</span>
             </div>
             <div className="social">
+              <a aria-label="Facebook" target="_blank" rel="noreferrer" href="https://www.facebook.com/hadiislamic">
+                <Facebook size={18} />
+              </a>
               <a aria-label="Instagram" target="_blank" rel="noreferrer" href="https://www.instagram.com/atifgulzar_wattoo?exln=MXMwYzNvZXZnbTJ6Zg==">
                 <Instagram size={18} />
               </a>
-              <a aria-label="WhatsApp" target="_blank" rel="noreferrer" href={`https://wa.me/${WHATSAPP_NUMBER}`}>
-                <MessageCircle size={18} />
+              <a aria-label="TikTok" target="_blank" rel="noreferrer" href="https://www.tiktok.com/@hadi_islamic?_r=1&_t=ZS-9AbJ6raDmo0">
+                <TikTokIcon size={18} />
               </a>
+              <button aria-label="WhatsApp" onClick={() => setWaModalOpen(true)} className="social-wa-btn">
+                <MessageCircle size={18} />
+              </button>
             </div>
           </div>
 
@@ -320,11 +458,36 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>Customer Helpline</h4>
+            <h4>Physical Store & Helpline</h4>
             <div className="contact-box">
-              <p><strong>Phone / WhatsApp:</strong><br/><a href={`https://wa.me/${WHATSAPP_NUMBER}`}>+92 345 1579846</a></p>
-              <p><strong>Email Support:</strong><br/><a href="mailto:atif1256@gmail.com">atif1256@gmail.com</a></p>
-              <p><strong>Delivery Coverage:</strong><br/>All Cities & Districts of Pakistan via Express Courier</p>
+              <div className="store-address-card">
+                <p className="addr-row">
+                  <MapPin size={16} className="text-gold" />
+                  <span>
+                    <strong>Lahore Flagship Store:</strong><br />
+                    Shop # G-5 Ground Floor, Shalimar Square Mall, Shalimar Link Road, Singhpura, Lahore, 54000, Pakistan
+                  </span>
+                </p>
+                <p className="timing-row">
+                  <Clock size={16} className="text-gold" />
+                  <span>
+                    <strong>Hours:</strong> <span className="open-pill">Open 24 Hours</span> (7 Days a Week)
+                  </span>
+                </p>
+                <p className="phone-row">
+                  <MessageCircle size={16} className="text-gold" />
+                  <span>
+                    <strong>Phone / WhatsApp:</strong> <a href={`https://wa.me/${WHATSAPP_NUMBER}`}>+92 345 1579846</a>
+                  </span>
+                </p>
+              </div>
+
+              <button 
+                onClick={() => setWaModalOpen(true)}
+                className="btn-footer-catalogue"
+              >
+                <ShoppingBag size={14} /> Open WhatsApp Catalogue
+              </button>
             </div>
             <div className="policy-links">
               <Link href="/policies/shipping">Shipping Policy</Link>
@@ -340,17 +503,15 @@ export function Footer() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp Action Button */}
-      <a 
+      {/* Floating WhatsApp Action Button (Bottom Right) */}
+      <button 
         aria-label="Chat on WhatsApp" 
         className="whatsapp-float" 
-        target="_blank" 
-        rel="noreferrer" 
-        href={getWhatsAppUrl('Assalamualaikum, I am visiting Hadi Islamic and would like to place an order or ask a question.')}
+        onClick={() => setWaModalOpen(true)}
       >
-        <span className="wa-tooltip">Order on WhatsApp</span>
+        <span className="wa-tooltip">WhatsApp Catalogue & Order (Open 24h)</span>
         <MessageCircle size={30} />
-      </a>
+      </button>
     </>
   );
 }
