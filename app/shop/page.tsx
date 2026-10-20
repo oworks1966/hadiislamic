@@ -1,0 +1,2 @@
+export const dynamic='force-dynamic';
+import {catalog} from '@/lib/db';import {ShopView} from '@/components/store';import type {Metadata} from 'next';export const metadata:Metadata={title:'Shop All Products'};export default async function Shop({searchParams}:{searchParams:Promise<{q?:string;category?:string}>}){const [data,params]=await Promise.all([catalog(),searchParams]);return <ShopView products={data.products} categories={data.categories} initialQuery={params.q||''} initialCategory={params.category||''}/>}

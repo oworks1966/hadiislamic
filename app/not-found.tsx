@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function NotFound(){return <div className="shell section"><h1>Page not found</h1><p>We could not find the product or page you requested.</p><Link className="btn" href="/shop">Return to shop</Link></div>}

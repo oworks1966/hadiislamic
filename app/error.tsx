@@ -1,0 +1,1 @@
+'use client';export default function Error({error,reset}:{error:Error;reset:()=>void}){return <div className="shell section"><h1>We are unable to load this page</h1><p>Please try again shortly.</p><button className="btn" onClick={reset}>Try again</button></div>}
