@@ -1,158 +1,198 @@
-import type {Product,Category,Banner} from './types';
+import type { Product, Category, Banner, BlogPost } from './types';
 
-export const categories:Category[]=[
-  // Main Categories
+export const categories: Category[] = [
+  // Primary Categories matching Altaiba structure
   {
-    id:'c-dates',
-    name:'Premium Dates (Khajoor)',
-    arabic_name:'تمور فاخرة',
-    slug:'dates',
-    parent_id:null,
-    sort_order:1,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=600&q=80',
-    description:'Authentic Madinah Munawwarah & Saudi dates, handpicked for peak freshness, soft texture and Sunnah blessing.'
+    id: 'c-dates',
+    name: 'Premium Saudi Dates',
+    arabic_name: 'تمور سعودية فاخرة',
+    slug: 'dates',
+    parent_id: null,
+    sort_order: 1,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=600&q=80',
+    description: 'Authentic Saudi & Madinah Dates directly imported for peak freshness and Sunnah nutrition.',
+    product_count: 8
   },
   {
-    id:'c-attar',
-    name:'Attar & Fragrances',
-    arabic_name:'عطور وزيوت نقية',
-    slug:'attar-fragrances',
-    parent_id:null,
-    sort_order:2,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80',
-    description:'100% non-alcoholic Arabian concentrated perfume oils, authentic Dehn Al Oud, Kasturi and White Musk.'
+    id: 'c-prayer-mats',
+    name: 'Prayer Mat (Jaye Namaz)',
+    arabic_name: 'سجادات الصلاة الفاخرة',
+    slug: 'prayer-mats',
+    parent_id: null,
+    sort_order: 2,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=600&q=80',
+    description: 'Plush velvet, Turkish embossed and orthopedic janamaz crafted for comfortable prostration.',
+    product_count: 6
   },
   {
-    id:'c-prayer',
-    name:'Prayer Essentials',
-    arabic_name:'مستلزمات الصلاة',
-    slug:'prayer-essentials',
-    parent_id:null,
-    sort_order:3,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=600&q=80',
-    description:'Luxurious Turkish velvet Janamaz, orthopedic knee-cushion mats, digital smart tasbeeh and beads.'
+    id: 'c-umrah',
+    name: 'Umrah Essentials',
+    arabic_name: 'مستلزمات الحج والعمرة',
+    slug: 'umrah-essentials',
+    parent_id: null,
+    sort_order: 3,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&q=80',
+    description: 'Practical, durable travel gear, secure belts, wrist straps, and pilgrim comforts for your sacred journey.',
+    product_count: 7
   },
   {
-    id:'c-sunnah-foods',
-    name:'Honey & Sunnah Foods',
-    arabic_name:'عسل وأغذية السنة',
-    slug:'sunnah-foods',
-    parent_id:null,
-    sort_order:4,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80',
-    description:'Pure Berry & Sidr honey, original 5L Zamzam water, organic Kalonji oil and Ajwa seed powder.'
+    id: 'c-ihram',
+    name: 'Ihram Collection',
+    arabic_name: 'ملابس الإحرام الرجالية والنسائية',
+    slug: 'ihram',
+    parent_id: null,
+    sort_order: 4,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1598032895397-b9472444bf93?w=600&q=80',
+    description: '100% pure combed cotton toweling and lightweight wash & wear Ihram sets for men and ladies.',
+    product_count: 5
   },
   {
-    id:'c-umrah',
-    name:'Hajj & Umrah Essentials',
-    arabic_name:'مستلزمات الحج والعمرة',
-    slug:'hajj-umrah',
-    parent_id:null,
-    sort_order:5,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&q=80',
-    description:'Premium 100% cotton Ihram sets, anti-slip belts, unscented toiletries and travel packs for pilgrims.'
+    id: 'c-zamzam',
+    name: 'Zam Zam Water',
+    arabic_name: 'ماء زمزم المبارك',
+    slug: 'zam-zam-water',
+    parent_id: null,
+    sort_order: 5,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=600&q=80',
+    description: '100% Genuine, certified Zamzam water packaged in factory-sealed tamper-proof cartons.',
+    product_count: 3
+  },
+  {
+    id: 'c-honey',
+    name: 'Pure Honey (Mithas)',
+    arabic_name: 'عسل سدر طبيعي وأغذية السنة',
+    slug: 'pure-honey',
+    parent_id: null,
+    sort_order: 6,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&q=80',
+    description: 'Raw, unpasteurized Sidr (Beri) and Acacia honey harvested from natural flora.',
+    product_count: 4
+  },
+  {
+    id: 'c-fragrance',
+    name: 'Fragrance & Attar',
+    arabic_name: 'عطور ودهن العود الفاخر',
+    slug: 'fragrances',
+    parent_id: null,
+    sort_order: 7,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80',
+    description: 'Concentrated Arabian oils, long-lasting Dehn Al Oud, White Musk, and roll-ons in fancy gift packaging.',
+    product_count: 6
+  },
+  {
+    id: 'c-miswak',
+    name: 'Miswak & Holders',
+    arabic_name: 'سواك طبيعي وحافظات',
+    slug: 'miswak-holders',
+    parent_id: null,
+    sort_order: 8,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1584285418504-0050ec44b4b7?w=600&q=80',
+    description: 'Natural fresh Peelu miswak and hygienic pocket holders for Sunnah oral health.',
+    product_count: 3
   },
 
-  // Subcategories under Dates (Khajoor Varieties)
+  // Date Variety Subcategories
   {
-    id:'sub-ajwa',
-    name:'Ajwa Al-Madinah (عجوة)',
-    arabic_name:'عجوة المدينة المنورة',
-    slug:'ajwa-dates',
-    parent_id:'c-dates',
-    sort_order:1,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=600&q=80',
-    description:'The most sacred date mentioned in Sahih Hadith. Dark blackish, mildly sweet with fine white grain lines.'
+    id: 'sub-qalmi',
+    name: 'Qalmi Dates',
+    arabic_name: 'تمر قلمي فاخر',
+    slug: 'qalmi-dates',
+    parent_id: 'c-dates',
+    sort_order: 1,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=600&q=80',
+    description: 'Deep blackish-brown dates known for their balanced sweetness, soft bite, and rich mineral profile.',
+    product_count: 2
   },
   {
-    id:'sub-medjool',
-    name:'Medjool Jumbo (مجدول)',
-    arabic_name:'مجدول جامبو فاخر',
-    slug:'medjool-dates',
-    parent_id:'c-dates',
-    sort_order:2,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=600&q=80',
-    description:'The King of Dates. Remarkably large, plump, extraordinarily juicy with natural caramel-like sweetness.'
+    id: 'sub-sughai',
+    name: 'Sughai Dates',
+    arabic_name: 'تمر صقعي سعودي',
+    slug: 'sughai-dates',
+    parent_id: 'c-dates',
+    sort_order: 2,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1584285418504-0050ec44b4b7?w=600&q=80',
+    description: 'Distinctive two-tone appearance featuring a golden crispy tip and a wonderfully soft brown base.',
+    product_count: 2
   },
   {
-    id:'sub-mabroom',
-    name:'Mabroom Saudi (مبروم)',
-    arabic_name:'مبروم سعودي ممتاز',
-    slug:'mabroom-dates',
-    parent_id:'c-dates',
-    sort_order:3,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=600&q=80',
-    description:'Slender, elongated shape with a pleasingly firm, chewy texture and subtle, balanced sweetness.'
+    id: 'sub-sukri',
+    name: 'Sukri Dates',
+    arabic_name: 'تمر سكري رطب',
+    slug: 'sukri-dates',
+    parent_id: 'c-dates',
+    sort_order: 3,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1577069861033-55d04cec4ef5?w=600&q=80',
+    description: 'Beloved golden date from Al-Qassim with a naturally sugary melt-in-the-mouth texture.',
+    product_count: 2
   },
   {
-    id:'sub-sukkari',
-    name:'Sukkari Rutab (سكري)',
-    arabic_name:'سكري رطب القصيم',
-    slug:'sukkari-dates',
-    parent_id:'c-dates',
-    sort_order:4,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1577069861033-55d04cec4ef5?w=600&q=80',
-    description:'Golden-amber color with a melt-in-mouth soft texture and sugary nectar flavor from Al-Qassim.'
+    id: 'sub-mabroom',
+    name: 'Mabroom Dates',
+    arabic_name: 'تمر مبروم ممتاز',
+    slug: 'mabroom-dates',
+    parent_id: 'c-dates',
+    sort_order: 4,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=600&q=80',
+    description: 'Slender, elongated shape with a pleasingly firm, chewy texture and gentle natural sweetness.',
+    product_count: 2
   },
   {
-    id:'sub-amber',
-    name:'Amber Royal (عنبر)',
-    arabic_name:'عنبر المدينة الملكي',
-    slug:'amber-dates',
-    parent_id:'c-dates',
-    sort_order:5,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1590483863484-90f745774a1d?w=600&q=80',
-    description:'One of the largest Saudi dates, soft and fleshy with a rich aroma and mild Sunnah sweetness.'
+    id: 'sub-ajwa',
+    name: 'Ajwa Dates',
+    arabic_name: 'عجوة المدينة المنورة',
+    slug: 'ajwa-dates',
+    parent_id: 'c-dates',
+    sort_order: 5,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=600&q=80',
+    description: 'The most sacred date mentioned in Sahih Hadith, soft dark fruit with fine white grain lines.',
+    product_count: 3
   },
   {
-    id:'sub-safawi',
-    name:'Safawi / Kalmi (صفاوي)',
-    arabic_name:'صفاوي / قلمي المدينة',
-    slug:'safawi-dates',
-    parent_id:'c-dates',
-    sort_order:6,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=600&q=80',
-    description:'Deep dark brown, chewy date renowned in Madinah for digestive wellness and rich mineral content.'
-  },
-  {
-    id:'sub-sagai',
-    name:'Sagai Saudi (صقعي)',
-    arabic_name:'صقعي سعودي فاخر',
-    slug:'sagai-dates',
-    parent_id:'c-dates',
-    sort_order:7,
-    active:true,
-    image_url:'https://images.unsplash.com/photo-1584285418504-0050ec44b4b7?w=600&q=80',
-    description:'Unique two-tone date: crisp light-golden top with a wonderfully soft honeyed brown base.'
+    id: 'sub-amber',
+    name: 'Amber Dates',
+    arabic_name: 'عنبر المدينة الملكي',
+    slug: 'amber-dates',
+    parent_id: 'c-dates',
+    sort_order: 6,
+    active: true,
+    image_url: 'https://images.unsplash.com/photo-1590483863484-90f745774a1d?w=600&q=80',
+    description: 'One of the largest royal dates of Madinah, thick fleshy pulp with subtle aroma and refined sweetness.',
+    product_count: 2
   }
 ];
 
-const p=(
-  id:string,
-  name:string,
-  slug:string,
-  price:number,
-  category_id:string,
-  image_url:string,
-  weight_grams:number,
-  description:string,
-  compare_at_price:number|null=null,
-  badge?:string,
-  package_size?:string,
-  origin:string='Saudi Arabia (Madinah Munawwarah)',
-  benefits:string[]=['100% Authentic Import','Naturally Sweet with Zero Added Sugar','Packed in hygienic sealed box']
-):Product=>({
+const makeP = (
+  id: string,
+  name: string,
+  slug: string,
+  price: number,
+  category_id: string,
+  image_url: string,
+  weight_grams: number,
+  description: string,
+  compare_at_price: number | null = null,
+  badge?: string,
+  package_size?: string,
+  origin: string = 'Madinah Munawwarah / Saudi Arabia',
+  rating: number = 5,
+  review_count: number = 18,
+  benefits: string[] = ['100% Genuine Sunnah Product', 'Hygienic sealed packaging', 'Express delivery across Pakistan'],
+  specs: Record<string, string> = {},
+  variations?: { name: string; options: { label: string; price: number; compare_at_price?: number }[] }[]
+): Product => ({
   id,
   name,
   slug,
@@ -162,305 +202,447 @@ const p=(
   weight_grams,
   description,
   compare_at_price,
-  stock:35,
-  featured:true,
-  active:true,
-  gallery:[image_url],
-  sku:`HADI-${id.toUpperCase()}`,
+  stock: 45,
+  featured: true,
+  active: true,
+  gallery: [image_url],
+  sku: `HADI-${id.toUpperCase()}`,
   badge,
   package_size,
   origin,
-  benefits
+  rating,
+  review_count,
+  benefits,
+  specs,
+  variations: variations || [
+    {
+      name: 'Weight / Pack Size',
+      options: [
+        { label: package_size || '500g Pack', price, compare_at_price: compare_at_price || undefined },
+        { label: '1kg Family Box', price: Math.round(price * 1.85), compare_at_price: compare_at_price ? Math.round(compare_at_price * 1.85) : undefined }
+      ]
+    }
+  ]
 });
 
-export const products:Product[]=[
-  // AJWA DATES
-  p(
-    'ajwa-500g',
-    'Madinah Ajwa Dates VIP – 500g Gift Box',
-    'madinah-ajwa-dates-500g',
-    2500,
-    'sub-ajwa',
-    'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=800&q=85',
-    500,
-    'Authentic Grade-A Ajwa Dates sourced directly from certified orchards in Madinah Munawwarah. Soft, dark, deeply nourishing with classic white micro-grain lines. Packed in an air-tight food-grade box.',
-    2850,
-    'Sunnah Special',
-    '500g Box',
-    'Madinah Munawwarah, KSA',
-    ['Direct from Madinah orchards','Mentioned in Hadith for barakah & protection','High in natural potassium, iron and dietary fiber']
-  ),
-  p(
-    'ajwa-1kg',
-    'Madinah Ajwa Dates Super Jumbo – 1kg Family Pack',
-    'madinah-ajwa-dates-1kg',
-    4700,
-    'sub-ajwa',
-    'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=800&q=85',
+export const products: Product[] = [
+  // 1. WhatsApp Catalogue: Dates
+  makeP(
+    'p-qalmi',
+    'Qalmi Dates – Premium Quality Khajoor',
+    'qalmi-dates-premium-quality',
+    3500,
+    'sub-qalmi',
+    'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=800&q=85',
     1000,
-    'Large, hand-selected Jumbo Ajwa Khajoor. Ideal for daily family consumption or sacred gifting. 100% natural, pesticide-free, freshly harvested and preserved under controlled temperature.',
+    'Premium Qalmi Dates with a rich natural flavor, soft bite and pleasing mild sweetness. Packed with natural potassium, iron and essential energy.',
+    3900,
+    'Popular',
+    '1kg Box',
+    'Saudi Arabia',
+    5,
+    34,
+    ['Fresh current season harvest', 'Firm yet soft texture', 'Naturally sweet without added syrup'],
+    { 'Origin': 'Saudi Arabia', 'Shelf Life': '12 Months', 'Storage': 'Keep in a cool dry place' }
+  ),
+  makeP(
+    'p-sughai',
+    'Sughai Dates – Premium Saudi Dates',
+    'sughai-dates-premium-saudi',
+    3500,
+    'sub-sughai',
+    'https://images.unsplash.com/photo-1584285418504-0050ec44b4b7?w=800&q=85',
+    1000,
+    'Premium Sughai Dates with their distinctive two-tone appearance, offering a sweet crispy tip and soft honeyed brown base. A favorite across the Arabian peninsula.',
+    3800,
+    'Two-Tone',
+    '1kg Box',
+    'Riyadh, Saudi Arabia',
+    5,
+    28,
+    ['Crisp and chewy dual texture', '100% natural and unpolished', 'Sealed food-grade box'],
+    { 'Variety': 'Suqai / Sughai', 'Origin': 'Saudi Arabia', 'Weight': '1000g' }
+  ),
+  makeP(
+    'p-sukri',
+    'Sukri Dates',
+    'sukri-dates-golden',
+    3500,
+    'sub-sukri',
+    'https://images.unsplash.com/photo-1577069861033-55d04cec4ef5?w=800&q=85',
+    1000,
+    'Delicious Sukri Dates with a naturally sweet taste and soft, plump golden texture. Known as the Royal Date of Al-Qassim.',
+    3850,
+    'Sweet & Soft',
+    '1kg Box',
+    'Al-Qassim, Saudi Arabia',
+    5,
+    42,
+    ['Rich nectar sweetness', 'Melt-in-the-mouth soft pulp', 'Directly imported from Al-Qassim'],
+    { 'Origin': 'Al-Qassim, KSA', 'Texture': 'Soft / Rutab', 'Weight': '1 KG' }
+  ),
+  makeP(
+    'p-mabroom',
+    'Mabroom Dates – Premium Saudi Khajoor',
+    'mabroom-dates-premium-saudi',
+    4800,
+    'sub-mabroom',
+    'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=800&q=85',
+    1000,
+    'Premium Mabroom Dates known for their elongated shape, delightfully chewy texture and balanced natural sweetness that is not overpowering.',
     5200,
     'Best Seller',
     '1kg Box',
     'Madinah Munawwarah, KSA',
-    ['Premium Jumbo size selection','100% satisfaction guarantee','Sealed tamper-proof packaging']
+    5,
+    56,
+    ['Slender and chewy profile', 'Ideal snack for sustained energy', 'Long shelf life in sealed packs'],
+    { 'Variety': 'Mabroom', 'Origin': 'Madinah, Saudi Arabia', 'Weight': '1000g' }
   ),
-
-  // MEDJOOL DATES
-  p(
-    'medjool-500g',
-    'Medjool Dates Royal Large – 500g Box',
-    'medjool-dates-royal-500g',
-    2350,
-    'sub-medjool',
-    'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800&q=85',
-    500,
-    'Renowned globally as the "King of Dates", Medjool dates are prized for their grand size, velvety soft pulp, and sumptuous caramel sweetness that melts in your mouth.',
-    2650,
-    'Royal Treat',
-    '500g Box',
-    'Palestine / Jordan Valley',
-    ['Exceptionally plump and soft','Rich notes of caramel and honey','Excellent natural energy booster']
-  ),
-  p(
-    'medjool-1kg',
-    'Medjool Dates Premium Jumbo – 1kg Luxury Pack',
-    'medjool-dates-jumbo-1kg',
-    4400,
-    'sub-medjool',
-    'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800&q=85',
-    1000,
-    'Full 1kg luxury box of Jumbo Grade Medjool dates. Luscious, dense and moist, perfect for Iftar tables, gifting and pre-workout nutrition.',
-    4900,
-    'Popular',
-    '1kg Box',
-    'Palestine / Jordan Valley',
-    ['Hand-graded Jumbo size','Zero preservatives or syrup added','Fresh current season harvest']
-  ),
-
-  // MABROOM DATES
-  p(
-    'mabroom-500g',
-    'Mabroom Saudi Dates Premium – 500g Pack',
-    'mabroom-saudi-dates-500g',
-    2100,
-    'sub-mabroom',
-    'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=800&q=85',
-    500,
-    'Slender, chewy, and moderately sweet Mabroom dates from Saudi Arabia. Highly favoured by those who prefer a firmer date with less sweetness.',
-    2400,
-    'Chewy & Rich',
-    '500g Pack',
-    'Al-Ula / Madinah, KSA',
-    ['Slender elongated shape','Pleasantly firm, chewy texture','Mild, natural, non-cloying sweetness']
-  ),
-  p(
-    'mabroom-1kg',
-    'Mabroom Saudi Dates Premium – 1kg Value Box',
-    'mabroom-saudi-dates-1kg',
-    3950,
-    'sub-mabroom',
-    'https://images.unsplash.com/photo-1597714026720-8f74c62310ba?w=800&q=85',
-    1000,
-    'Full 1kg family box of premium Saudi Mabroom Khajoor. Great shelf-life, dry skin and chewy flesh make it a favourite everyday snacking date.',
+  makeP(
+    'p-ajwa-deluxe',
+    'Ajwa Dates (Khajur) Deluxe',
+    'ajwa-dates-khajur-deluxe',
     4500,
-    'Value Pack',
-    '1kg Box',
-    'Al-Ula / Madinah, KSA'
-  ),
-
-  // SUKKARI DATES
-  p(
-    'sukkari-1kg',
-    'Sukkari Rutab Fresh Golden Dates – 1kg Box',
-    'sukkari-rutab-golden-1kg',
-    2150,
-    'sub-sukkari',
-    'https://images.unsplash.com/photo-1577069861033-55d04cec4ef5?w=800&q=85',
+    'sub-ajwa',
+    'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=800&q=85',
     1000,
-    'Famous golden-yellow Sukkari dates from Al-Qassim. Luscious, melt-in-mouth sweet with a delightful honey cream profile. Beloved by date connoisseurs.',
-    2450,
-    'Sweet & Creamy',
+    'Authentic Grade-A Madinah Ajwa Dates with classic dark black appearance and signature fine white micro-lines. Highly venerated in prophetic medicine.',
+    5000,
+    'Sunnah Special',
     '1kg Box',
-    'Al-Qassim, Saudi Arabia',
-    ['Signature golden hue','Extremely soft and sugary','Authentic Al-Qassim harvest']
+    'Madinah Munawwarah, KSA',
+    5,
+    89,
+    ['Certified Madinah orchard harvest', 'Referenced in Sahih Bukhari for morning barakah', 'Rich in natural antioxidants'],
+    { 'Origin': 'Madinah Munawwarah', 'Grade': 'Deluxe Jumbo', 'Packaging': 'Sealed Gift Box' }
   ),
-
-  // AMBER DATES
-  p(
-    'amber-500g',
-    'Amber Al-Madinah Royal Large – 500g Box',
-    'amber-madinah-dates-500g',
-    3100,
+  makeP(
+    'p-amber',
+    'Amber Dates – Royal Madinah',
+    'amber-dates-royal-madinah',
+    5200,
     'sub-amber',
     'https://images.unsplash.com/photo-1590483863484-90f745774a1d?w=800&q=85',
-    500,
-    'One of the rarest and largest dates grown in Madinah. Thick fleshy pulp, subtle aroma and sophisticated taste make Amber a prized luxury gift.',
-    3500,
+    1000,
+    'One of the largest and rarest dates grown in the blessed soil of Madinah. Generous fleshy pulp, light aroma, and elegant presentation.',
+    5800,
     'Royal Rare',
-    '500g Box',
-    'Madinah Munawwarah, KSA',
-    ['Extra large fruit size','Generous fleshy pulp','Premium gift packaging']
-  ),
-
-  // SAFAWI / KALMI DATES
-  p(
-    'safawi-1kg',
-    'Safawi / Kalmi Dates Madinah – 1kg Box',
-    'safawi-kalmi-dates-1kg',
-    3300,
-    'sub-safawi',
-    'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=800&q=85',
-    1000,
-    'Dark, intensely flavored Kalmi/Safawi dates from Madinah. Plump, rich in iron and potassium, with texture similar to Ajwa at an accessible value.',
-    3750,
-    'Healthy Choice',
     '1kg Box',
     'Madinah Munawwarah, KSA',
-    ['Similar profile to Ajwa','High nutritional density','Naturally rich flavor']
+    5,
+    22,
+    ['Large fleshy pulp', 'Delicate mild sweetness', 'Exclusive royal treat'],
+    { 'Origin': 'Madinah Munawwarah', 'Weight': '1000g' }
   ),
 
-  // SAGAI DATES
-  p(
-    'sagai-1kg',
-    'Sagai Saudi Two-Tone Dates – 1kg Box',
-    'sagai-saudi-dates-1kg',
-    2750,
-    'sub-sagai',
-    'https://images.unsplash.com/photo-1584285418504-0050ec44b4b7?w=800&q=85',
+  // 2. WhatsApp Catalogue: Prayer Mats (Jaye Namaz)
+  makeP(
+    'p-janamaz-gold',
+    'Velvet Prayer Mat – Classic Gold & Brown',
+    'velvet-prayer-mat-classic-gold',
+    850,
+    'c-prayer-mats',
+    'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&q=85',
+    1100,
+    'Soft velvet prayer mat with intricate golden Islamic geometric Mihrab arch embroidery. Smooth and gentle on forehead and knees.',
+    1100,
+    'Top Value',
+    'Standard Size',
+    'Imported / Turkey',
+    5,
+    64,
+    ['High quality embossed velvet', 'Anti-slip base weave', 'Lightweight and durable'],
+    { 'Fabric': 'Plush Velvet', 'Size': '70 × 115 cm', 'Color': 'Gold / Brown' }
+  ),
+  makeP(
+    'p-janamaz-red',
+    'Velvet Prayer Mat – Royal Red Embroidered (1.3 KG)',
+    'velvet-prayer-mat-royal-red',
+    850,
+    'c-prayer-mats',
+    'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&q=85',
+    1300,
+    '• Fabric: Velvet • Size: 80 × 120 cm • Weight: 1.3 KG • Thickness: High-density plush velvet pile with anti-slip backing. Ornate gold border detailing.',
+    1200,
+    'Heavyweight',
+    '80 × 120 cm (1.3 KG)',
+    'Turkey',
+    5,
+    51,
+    ['Heavyweight 1.3 KG construction', 'Generous 80x120cm adult dimensions', 'Comfortable knee cushioning'],
+    { 'Fabric': 'Velvet', 'Dimensions': '80 × 120 cm', 'Weight': '1.3 KG', 'Color': 'Royal Crimson Red' }
+  ),
+
+  // 3. WhatsApp Catalogue: Umrah Essentials
+  makeP(
+    'p-ihram-belt',
+    'Premium Ihram Belt – Secure & Comfortable',
+    'premium-ihram-belt-secure-comfortable',
+    800,
+    'c-umrah',
+    'https://images.unsplash.com/photo-1598032895397-b9472444bf93?w=800&q=85',
+    250,
+    'Comfortable and practical Ihram Belt designed to keep your Ihram securely fastened during Tawaf and Sa’i. Features heavy-duty buckle and water-resistant zippered compartments for currency, cards and ID.',
     1000,
-    'Distinctive two-toned Saudi date with crisp yellow top and soft brown base. Combines crunch and honeyed softness in every single bite.',
-    3100,
-    'Two-Tone Unique',
-    '1kg Box',
-    'Riyadh Region, KSA'
+    'Essential',
+    'Adjustable Universal',
+    'Imported',
+    5,
+    47,
+    ['Concealed secure zipper compartments', 'Adjustable heavy-duty canvas belt', 'Non-chafing comfortable border'],
+    { 'Material': 'Heavy Canvas & Buckle', 'Size': 'Adjustable up to 48 inches', 'Pockets': '2 Zippered' }
+  ),
+  makeP(
+    'p-child-strap',
+    'Child Safety Lost Strap – Anti-Lost Wrist Link',
+    'child-safety-lost-strap-anti-lost',
+    750,
+    'c-umrah',
+    'https://images.unsplash.com/photo-1503919005314-30d93d07d823?w=800&q=85',
+    200,
+    '• Soft & comfortable wrist straps • Flexible coiled safety cord with internal steel wire • 360-degree rotating stainless steel connector • Ideal for crowded Mataf, airports and travel.',
+    950,
+    'Peace of Mind',
+    'Extendable up to 2 Meters',
+    'Imported',
+    5,
+    33,
+    ['Reinforced internal steel wire', 'Breathable sponge wrist padding', 'Child-proof double safety velcro lock'],
+    { 'Cord': 'Steel wire with PU coating', 'Length': 'Up to 2 meters', 'Attachment': '360° Rotational' }
+  ),
+  makeP(
+    'p-zamzam-5l',
+    'Original Zam Zam Water – 5 Liter | Self Imported',
+    'original-zam-zam-water-5-liter-self-imported',
+    6500,
+    'c-zamzam',
+    'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=800&q=85',
+    5500,
+    '• Original Zam Zam Water • 5 Liter Bottle • Self Imported from Makkah Al-Mukarramah with tamper-proof seal and King Abdullah Project carton packaging.',
+    7500,
+    '100% Genuine',
+    '5 Liter Canister Box',
+    'Makkah Al-Mukarramah, KSA',
+    5,
+    115,
+    ['Tamper-proof King Abdullah factory seal', 'Blessed water from the well of Zamzam', 'Protective carton packaging for safe transit'],
+    { 'Volume': '5 Litres', 'Origin': 'Makkah Al-Mukarramah', 'Packaging': 'Original Sealed Box' }
   ),
 
-  // ATTAR & PERFUMES
-  p(
-    'attar-oud-royal',
+  // 4. WhatsApp Catalogue: Ihram
+  makeP(
+    'p-cotton-ihram',
+    'Premium Cotton Ihram – Exclusive Collection',
+    'premium-cotton-ihram-exclusive-collection',
+    5500,
+    'c-ihram',
+    'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=800&q=85',
+    1400,
+    'The premium textured pure combed cotton fabric offers a refined look while maintaining maximum sweat absorbency, lightness, and non-transparency for Hajj and Umrah.',
+    6500,
+    'Luxury Cotton',
+    '2-Piece Toweling Set (1400g)',
+    'Pakistan / Saudi Standard',
+    5,
+    73,
+    ['100% Pure Combed Cotton', 'Heavy 1400g toweling weave', 'Non-transparent and ultra-absorbent'],
+    { 'Fabric': '100% Combed Cotton', 'Pieces': '2 Sheets (Top & Bottom)', 'Weight': '1.4 KG' }
+  ),
+
+  // 5. Honey, Fragrances & Accessories
+  makeP(
+    'p-sidr-honey',
+    'Pure Wild Sidr (Beri) Honey 500gm',
+    'pure-wild-sidr-beri-honey-500g',
+    2800,
+    'c-honey',
+    'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=85',
+    750,
+    '100% Raw, unfiltered Sidr honey cold-harvested from blooming wild Beri forests in the Potohar region. Natural wellness elixir with warm aroma.',
+    3200,
+    '100% Raw',
+    '500gm Glass Jar',
+    'Potohar / Karak Region',
+    5,
+    39,
+    ['Laboratory certified purity', 'Rich in active enzymes', 'Natural Sunnah remedy'],
+    { 'Type': 'Wild Sidr (Beri)', 'Net Weight': '500g', 'Processing': 'Raw & Unheated' }
+  ),
+  makeP(
+    'p-acacia-honey',
+    'Acacia Honey 250gm',
+    'acacia-honey-250g',
+    1450,
+    'c-honey',
+    'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=85',
+    450,
+    'Light, clear and delicate pure Acacia floral honey. Slow to crystallize with a sweet, gentle floral taste.',
+    1700,
+    'Delicate Floral',
+    '250gm Glass Jar',
+    'Pakistan',
+    5,
+    19,
+    ['Mild gentle floral sweetness', 'Light golden clarity', 'Natural breakfast accompaniment'],
+    { 'Floral Source': 'Acacia Flowers', 'Net Weight': '250g' }
+  ),
+  makeP(
+    'p-oud-royal',
     'Dehn Al Oud Royal Concentrated Attar – 12ml',
     'dehn-al-oud-royal-12ml',
     2950,
-    'c-attar',
+    'c-fragrance',
     'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&q=85',
     120,
-    'Deep, woody and opulent oriental fragrance crafted with aged Cambodian and Assam agarwood essence. Long-lasting, 100% non-alcoholic roll-on.',
+    'Aged Cambodian and Assam agarwood concentrated non-alcoholic perfume oil. Opulent, deep woody oriental notes that last over 24 hours on cloth.',
     3500,
-    'Long-Lasting',
-    '12ml Crystal Bottle',
+    'Long Lasting',
+    '12ml Crystal Flacon',
     'Dubai / UAE',
-    ['100% Non-Alcoholic Concentrated Oil','Lasts over 24 hours on fabric','Includes velvet presentation pouch']
+    5,
+    44,
+    ['100% Non-Alcoholic concentrated oil', 'Lasts over 24 hours', 'Includes velvet presentation box'],
+    { 'Concentration': 'Pure Perfume Oil', 'Volume': '12 ML', 'Alcohol': '0% Free' }
   ),
-  p(
-    'attar-white-musk',
-    'Pure Tahara White Musk Attar – 12ml',
+  makeP(
+    'p-white-musk',
+    'Pure Tahara White Musk – 12ml',
     'pure-tahara-white-musk-12ml',
     1450,
-    'c-attar',
+    'c-fragrance',
     'https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=800&q=85',
     120,
-    'Thick, velvety creamy white musk renowned for fresh powdery fragrance, purity, and long-lasting subtlety. Perfect for daily prayer and personal hygiene.',
+    'Thick, velvety smooth Misk Tahara white musk. Iconic fresh powdery clean scent favored for daily prayer and purification.',
     1750,
     'Pure & Fresh',
     '12ml Bottle',
     'Saudi Arabia',
-    ['Classic Misk Tahara formula','Gentle powdery floral scent','Suitable for both men and women']
+    5,
+    31,
+    ['Traditional thick Tahara formula', 'Clean, soothing powdery fragrance', 'Safe for body and fabric'],
+    { 'Type': 'Misk Tahara', 'Volume': '12 ML', 'Fragrance': 'Clean White Powdery Musk' }
   ),
-
-  // PRAYER ESSENTIALS
-  p(
-    'prayer-mat-velvet',
-    'Turkish Embossed Velvet Janamaz – Royal Emerald',
-    'turkish-embossed-velvet-janamaz-emerald',
-    1850,
-    'c-prayer',
-    'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&q=85',
-    950,
-    'High-density plush Turkish velvet prayer mat with traditional Mihrab design and soft fringe. Gentle on knees and joints during prostration.',
-    2200,
-    'Top Quality',
-    'Standard Adult 80×120cm',
-    'Bursa, Turkey',
-    ['Thick high-density velvet pile','Anti-slip back weave','Colorfast premium Turkish yarn']
+  makeP(
+    'p-miswak-holder',
+    'Natural Sewak Miswak & Hygienic Holder Set',
+    'natural-sewak-miswak-holder-set',
+    350,
+    'c-miswak',
+    'https://images.unsplash.com/photo-1584285418504-0050ec44b4b7?w=800&q=85',
+    100,
+    'Freshly vacuum-sealed natural Salvadora persica (Peelu) miswak with custom ventilated hygienic pocket carrying tube.',
+    500,
+    'Sunnah Smile',
+    '1 Miswak + 1 Holder',
+    'Pakistan / KSA',
+    5,
+    25,
+    ['Vacuum sealed for maximum freshness', 'Ventilated protective pocket tube', 'Strengthens gums and freshens breath'],
+    { 'Source': 'Salvadora Persica (Peelu)', 'Package': '1 Miswak + 1 Airflow Holder' }
   ),
-  p(
-    'tasbeeh-digital-smart',
-    'Smart Digital Zikr Ring & Counter – OLED Display',
+  makeP(
+    'p-smart-tasbeeh',
+    'Smart Digital Zikr Ring & Tally Counter',
     'smart-digital-zikr-ring-counter',
     1250,
-    'c-prayer',
+    'c-prayer-mats',
     'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=800&q=85',
     90,
-    'Ergonomic ring-style digital zikr tally counter with vibration feedback, bright OLED counter, and rechargeable lithium battery.',
+    'Modern ergonomic ring-style digital zikr tally counter with bright OLED counter screen, silent button, and vibration alert at 33, 66, 99 counts.',
     1600,
-    'Modern Tech',
+    'Smart Tech',
     'Universal Ring Fit',
     'Imported',
-    ['Vibration alert at 33, 66, 99 counts','Rechargeable USB-C port','Lightweight waterproof design']
-  ),
-
-  // SUNNAH FOODS
-  p(
-    'honey-sidr-500g',
-    'Pure Wild Sidr (Beri) Honey – 500g Glass Jar',
-    'pure-wild-sidr-honey-500g',
-    2800,
-    'c-sunnah-foods',
-    'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=85',
-    800,
-    '100% Raw, unfiltered Sidr honey harvested from blooming wild Beri trees. Distinctive rich taste, golden amber shade, and recognized wellness qualities.',
-    3200,
-    '100% Pure Raw',
-    '500g Jar',
-    'Potohar / Karak Region',
-    ['Laboratory tested for 100% purity','Cold-extracted without heating','Rich in antioxidants and natural enzymes']
-  ),
-  p(
-    'zamzam-5l',
-    'Original Makkah Zamzam Water – 5 Litres',
-    'original-makkah-zamzam-water-5l',
-    5900,
-    'c-sunnah-foods',
-    'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=800&q=85',
-    5500,
-    'Genuine King Abdullah Project Zamzam water in factory-sealed 5-litre carton. Shipped carefully with secure packaging to your doorstep across Pakistan.',
-    6500,
-    'Blessed Water',
-    '5L Canister',
-    'Makkah Al-Mukarramah, KSA',
-    ['Tamper-proof King Abdullah Project seal','Tested and certified genuine','Delivered with care all over Pakistan']
-  ),
-
-  // HAJJ & UMRAH
-  p(
-    'ehram-toweling-cotton',
-    'Luxury Pure Cotton Toweling Ehram – 1400g Set',
-    'luxury-cotton-toweling-ehram-1400g',
-    2400,
-    'c-umrah',
-    'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=800&q=85',
-    1400,
-    'Heavyweight 1400g two-piece pure combed cotton toweling Ihram. Super-absorbent, non-transparent, cool in hot climate, and soft against the skin.',
-    2800,
-    'Hajj Season',
-    '2-Piece Full Set',
-    'Faisalabad, Pakistan',
-    ['Zero synthetic blend','Superior sweat absorbency','Non-transparent heavy weave']
+    5,
+    38,
+    ['Vibration alert at count intervals', 'Rechargeable USB-C lithium battery', 'Lightweight and durable'],
+    { 'Display': 'OLED Screen', 'Battery': 'Rechargeable via USB-C', 'Vibration': 'At 33, 66, 99' }
   )
 ];
 
-export const banners:Banner[]=[
+// Altaiba-Style Banners
+export const banners: Banner[] = [
   {
-    id:'b1',
-    title:'Blessed Madinah Dates & Islamic Lifestyle Essentials',
-    subtitle:'Directly imported Ajwa, Medjool, Mabroom and authentic Sunnah foods delivered with care to your doorstep anywhere in Pakistan.',
-    image_url:'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1700&q=85',
-    button_text:'Explore Date Varieties',
-    button_url:'/category/dates',
-    active:true,
-    sort_order:1
+    id: 'b1',
+    badge: 'AL-MADINAH AL-MUNAWWARAH IMPORTS',
+    title: 'Blessed Saudi Dates & Authentic Sunnah Essentials',
+    subtitle: 'Directly imported Qalmi, Sughai, Sukri, Mabroom, Ajwa dates, pure Zamzam water and luxury prayer essentials delivered across Pakistan.',
+    image_url: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=1800&q=85',
+    button_text: 'Shop Collection',
+    button_url: '/shop',
+    active: true,
+    sort_order: 1
+  },
+  {
+    id: 'b2',
+    badge: 'HAJJ & UMRAH COLLECTION',
+    title: 'Prepare Your Sacred Journey With Peace of Mind',
+    subtitle: '100% Combed Cotton Ihram, secure anti-slip travel belts, and child safety straps crafted for pilgrimage comfort.',
+    image_url: 'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=1800&q=85',
+    button_text: 'Explore Umrah Gear',
+    button_url: '/category/umrah-essentials',
+    active: true,
+    sort_order: 2
   }
 ];
 
-export const money=(n:number)=>'Rs. '+Math.round(n).toLocaleString('en-PK');
+// Blog Posts matching Altaiba News
+export const blogPosts: BlogPost[] = [
+  {
+    id: 'blog-1',
+    title: 'Hajj & Umrah Packing Guide: Essential Items for a Comfortable Journey',
+    slug: 'hajj-umrah-packing-guide-essential-items',
+    date: 'March 15, 2026',
+    category: 'Hajj & Umrah',
+    author: 'Hadi Islamic Editorial',
+    excerpt: 'A comprehensive checklist for pilgrims covering proper 1400g cotton Ihram selection, secure belts, footwear and personal travel hygiene in Makkah and Madinah.',
+    image_url: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=800&q=80',
+    read_time: '5 min read',
+    content: [
+      'Embarking on the sacred journey of Hajj or Umrah is one of the most transformative spiritual milestones for a Muslim. Ensuring that you are properly equipped with comfortable, Shariah-compliant essentials allows you to focus wholeheartedly on your worship.',
+      '1. Selecting the Right Ihram: Choose a 100% pure combed cotton toweling Ihram with a weight between 1200g and 1400g. Pure cotton breathes effortlessly in hot climates, absorbs perspiration, and guarantees total non-transparency during prayer.',
+      '2. Anti-Slip Ihram Belt: A reinforced canvas or nylon belt keeps your lower garment safely anchored and offers secure zip pockets for your passport, Saudi Riyals, and hotel card.',
+      '3. Travel Safety: If traveling with young children, a flexible steel-core wrist link is an invaluable safeguard in the busy courtyards of the Haramain.',
+      'May Allah accept your Umrah and reward your devotion.'
+    ]
+  },
+  {
+    id: 'blog-2',
+    title: 'Ajwa, Mabroom, Sukry or Qalmi? A Simple Guide to Popular Dates',
+    slug: 'ajwa-mabroom-sukry-qalmi-dates-guide',
+    date: 'April 02, 2026',
+    category: 'Sunnah Nutrition',
+    author: 'Hadi Islamic Editorial',
+    excerpt: 'Explore the taste, texture, nutritional benefits, and distinct characteristics of famous Saudi date varieties to choose the perfect box for your family.',
+    image_url: 'https://images.unsplash.com/photo-1603048719539-9ecb0b239e5c?w=800&q=80',
+    read_time: '4 min read',
+    content: [
+      'Dates are an integral part of Islamic tradition and a revered Sunnah superfood packed with natural minerals, fiber, and clean energy.',
+      'Ajwa Al-Madinah: Celebrated for its unique Hadith virtues, Ajwa is dark, rounded, and has a gently sweet flavor with a pleasing chewy bite.',
+      'Sukri Dates: Known as the "Royal Date" of Al-Qassim, Sukri dates are golden-blonde with a sugary, melt-in-the-mouth texture.',
+      'Mabroom Dates: Elongated, slender, and firmer with a sophisticated caramel undertone, Mabroom is ideal for those who prefer dates that are not excessively soft.',
+      'Qalmi / Safawi: Deep brownish-black with a texture reminiscent of Ajwa, rich in potassium and iron at exceptional everyday value.',
+      'Sughai Dates: Beloved for its distinct two-tone color—crisp golden top and soft brownish body.'
+    ]
+  },
+  {
+    id: 'blog-3',
+    title: 'Sidr vs Acacia Honey: Which One Should You Choose?',
+    slug: 'sidr-vs-acacia-honey-guide',
+    date: 'April 10, 2026',
+    category: 'Natural Health',
+    author: 'Hadi Islamic Editorial',
+    excerpt: 'Understand the distinct flavor profiles, floral origins, medicinal properties, and enzymatic strengths between raw wild Sidr and pure Acacia honey.',
+    image_url: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80',
+    read_time: '4 min read',
+    content: [
+      'Honey has been prized across centuries as both a blessed food and a potent remedy. In the Holy Quran, Allah states that in honey is "healing for mankind."',
+      'Wild Sidr (Beri) Honey: Extracted from the nectar of wild Sidr trees. It is thick, aromatic, rich in antioxidants, and renowned for immune support.',
+      'Acacia Honey: Extracted from delicate Acacia blossoms. It has a light golden hue, mild floral taste, and remains liquid without crystallizing quickly.',
+      'Both varieties offer clean, natural nourishment with zero added sugars or preservatives when sourced raw.'
+    ]
+  }
+];
+
+export const money = (n: number) => 'PKR ' + Math.round(n).toLocaleString('en-PK');
