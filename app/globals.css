@@ -121,18 +121,27 @@ button {
   flex-shrink: 0;
 }
 
-.brand-emblem {
-  background: linear-gradient(135deg, var(--green-primary), var(--green-dark));
-  color: #ffd875;
-  font-size: 26px;
-  font-family: 'Traditional Arabic', serif;
-  width: 44px;
-  height: 44px;
+.brand-logo-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 3px 8px rgba(7, 144, 87, 0.25);
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+  transition: transform 0.2s;
+}
+
+.brand:hover .brand-logo-img {
+  transform: scale(1.05);
+}
+
+.footer-logo-img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .brand-text {

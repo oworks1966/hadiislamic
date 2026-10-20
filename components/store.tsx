@@ -114,7 +114,7 @@ export function Header({ categories }: { categories: Category[] }) {
 
           {/* Logo */}
           <Link className="brand" href="/">
-            <span className="brand-emblem">ه</span>
+            <img src="/logo.png" alt="Hadi Islamic Logo" className="brand-logo-img" />
             <div className="brand-text">
               <span className="brand-title">HADI <b>ISLAMIC</b></span>
               <span className="brand-sub">PREMIUM DATES & SUNNAH ESSENTIALS</span>
@@ -274,7 +274,7 @@ export function Footer() {
         <div className="shell foot-grid">
           <div>
             <div className="footer-logo">
-              <span className="brand-emblem">ه</span>
+              <img src="/logo.png" alt="Hadi Islamic Logo" className="footer-logo-img" />
               <div>
                 <h3>HADI ISLAMIC</h3>
                 <small>AUTHENTIC SUNNAH & LIFESTYLE</small>
